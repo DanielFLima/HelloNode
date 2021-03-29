@@ -11,6 +11,7 @@ app.get("/noticias",function(req, res){
     });
 });
 
+
 app.get("/noticia/:id", function(req, res){
     Noticias.findAll({
         where:{
@@ -20,6 +21,7 @@ app.get("/noticia/:id", function(req, res){
         res.send(noticia);
     });
 });
+
 
 app.post("/noticia/add", function(req, res){
     Noticias.create({
@@ -32,6 +34,7 @@ app.post("/noticia/add", function(req, res){
     });
 });
 
+
 app.get("/noticia/delete/:id", function(req, res){
     Noticias.destroy({where:{ìd: req.params.id}}).them(function(){
         res.send("Removido com sucesso");
@@ -39,24 +42,6 @@ app.get("/noticia/delete/:id", function(req, res){
         res.send("Erro: " + erro);
     });
 });
-
-
-
-/*
-app.get("/contato",function(req,res){  // vc requisita algo para o servidor
-    res.send("<h1>Tá querendo me ligar pra que? corno</h1>")      // o servidor te responde
-});
-
-app.get("/post/:titulo",function(req,res){  // vc requisita algo para o servidor
-    console.log(req.params.titulo); // o usuario vai enviar para o servidor a informação
-    if(req.params.titulo == "contato"){
-        res.send("<h1>Tá querendo me ligar pra que? corno</h1>");      // o servidor te responde
-    }else{
-        res.send("<h1>Fala ai oque tu quer</h1>");
-    }
-});
-*/
-
 
 
 app.listen(9999, function(){
