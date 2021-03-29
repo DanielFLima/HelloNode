@@ -1,0 +1,72 @@
+/*/@import url(https://fonts.google.com/specimen/Nunito?preview.text=Nome%20Email%20Telefone&preview.text_type=custom#standard-styles);
+*/
+
+
+body{
+    position: absolute;
+    background-color: rgb(35, 0, 68);
+}
+.form{
+    position: absolute;
+    width: 400px;
+    height: 50vh;
+    left: 50vw;
+    top: 25vh;
+    padding: 10px;
+    background-color: rgb(64, 14, 110);;
+    border-radius: 10px;
+    transform: translateX(-50%);
+    
+    
+}
+input{
+    position: relative;
+    left: 2vw;
+    width: 300px;
+    height: 25px;
+    font-size: 0.75vw;
+    padding-left: 15px;
+    border-radius: 20px;
+    border-style: none;
+    background-color: blueviolet;
+    color: white;
+}
+h6{
+    position: relative;
+    left: 2.5vw;
+    font-size: 1vw;
+    color: white;
+    margin: 5px;
+    margin-top: 20px;
+    margin-left: 0px;
+    font-family: 'Nunito' ,'Lato',sans-serif;
+}
+button{
+    position: relative;
+    left: 50%;
+    top: 10px;
+    width: 100px;
+    margin-bottom: 10px;
+    transform: translateX(-50%);
+    font-size: 1vw;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    background-color: blueviolet;
+    font-weight: bold;
+    font-family: 'Nunito' ,'Lato',sans-serif;
+
+}
+
+img{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    align-content: center;
+    width: 100px;
+}
+
+button:hover,input:hover{
+    background-color: rgb(63, 190, 248);
+    color: black;
+}
