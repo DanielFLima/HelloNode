@@ -1,4 +1,4 @@
-const bd = require('./bd');
+const bd = require('./bd')
 
 const Noticias = bd.sequelize.define('noticias', {
     titulo:{
@@ -9,8 +9,9 @@ const Noticias = bd.sequelize.define('noticias', {
         type: bd.Sequelize.TEXT
     }
 
-});
+})
 
-Noticias.sync({force: true});
+//Noticias.sync({force: true}); só executa uma vez para criar a tabela
+
 
 module.exports = Noticias

@@ -1,0 +1,9 @@
+<h1>Lista de Notícias: </h1>
+
+{{#each noticias}}
+    <small>{{dataValues.createdAt}}</small>
+    <h2>{{dataValues.titulo}}</h2>
+    <p>{{dataValues.conteudo}}</p>
+    <a href="/deletar/{{dataValues.id}}"><button>Deletar</button><a>
+    <hr>
+{{/each}}

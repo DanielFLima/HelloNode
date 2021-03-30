@@ -1,49 +1,49 @@
-const express = require("express");
-const app = express();
-const dir = __dirname;
-const Noticias = require("./public/models/Noticias");
+const express = require("express")
+const app = express()
+const Noticias = require("./models/Noticias")
+const handlebars = require('express-handlebars')
+const bodyParser = require('body-parser')
 
 
-//Rotas
-app.get("/noticias",function(req, res){
-    Noticias.findAll().them(function(noticias){
-        res.send(noticias)
-    });
-});
+//config
+    //tamplate engine
+    app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+    app.set('view engine', 'handlebars')
+    app.use(bodyParser.urlencoded({extended: false}))
+    app.use(bodyParser.json())
 
+// ROTAS
+    app.get('/noticias', function(req, res){
+        
+        res.render('formulario')
+    })
+    app.post('/add', function(req, res){
+        Noticias.create({
+            titulo: req.body.titulo,
+            conteudo: req.body.conteudo
+        }).then(function(){
+            res.redirect('/')
+        }).catch(function(erro){
+            res.send("Falha na criação: " + erro)
+        })
+        //res.send('Texto: ' + req.body.titulo + " Conteudo: " + req.body.conteudo)
+    })
 
-app.get("/noticia/:id", function(req, res){
-    Noticias.findAll({
-        where:{
-            id: req.params.id
-        }
-    }).them(function(noticia){
-        res.send(noticia);
-    });
-});
+    app.get('/', function(req, res) {
+        Noticias.findAll({order:[['id', 'DESC']]}).then(function(noticias){
+            res.render('home',{noticias: noticias})
+        })
+    })
 
-
-app.post("/noticia/add", function(req, res){
-    Noticias.create({
-        titulo: req.body.titulo,
-        conteudo: req.body.conteudo
-    }).them(function(){
-        res.send("Cadastrado com Sucesso");
-    }).catch(function(erro){
-        res.send("Erro: " + erro);
-    });
-});
-
-
-app.get("/noticia/delete/:id", function(req, res){
-    Noticias.destroy({where:{ìd: req.params.id}}).them(function(){
-        res.send("Removido com sucesso");
-    }).catch(function(erro){
-        res.send("Erro: " + erro);
-    });
-});
+    app.get('/deletar/:id', function(req, res){
+        Noticias.destroy({where: {'id': req.params.id}}).then(function(){
+            res.send("Postagem foi deletada com sucesso!")
+        }).catch(function(erro){
+            res.send("Erro " + erro + " ao tentar deletar!")
+        })
+    })
 
 
 app.listen(9999, function(){
-    console.log("to rodando carai, vai nesse site link http://localhost:9999")
+    console.log("Clica  ai  http://localhost:9999")
 });
